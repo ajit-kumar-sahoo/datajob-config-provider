@@ -24,11 +24,11 @@
     <div class="label-container">
       <label for="accesskey">Access Key</label>
     </div>
-    <input id="accesskey" type="text" formControlName="accesskey" placeholder="e.g. Access Key"/>
+    <input id="accesskey" type="password" formControlName="accesskey" placeholder="e.g. Access Key"/>
     <div class="label-container">
       <label for="secretkey">Secret Key</label>
     </div>
-    <input id="secretkey" type="text" formControlName="secretkey" placeholder="e.g. Secret Key"/>
+    <input id="secretkey" type="password" formControlName="secretkey" placeholder="e.g. Secret Key"/>
   </div>
   
   <div class="tab">
@@ -36,36 +36,50 @@
     <div class="label-container">
       <label for="type">Type</label>
       <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="type" formControlName="type" (change)="hideFields()">
-        <option selected value="">Select source type</option>
-        <option value="FILE_SYSTEM">FILE SYSTEM</option>
+        <option value="FILE_SYSTEM" selected>FILE SYSTEM</option>
         <option value="DATABASE">DATABASE</option>
         <option value="KAFKA_STREAM">KAFKA STREAM</option>
       </select>
     </div>
-    <div class="label-container">
-      <label for="filepath">File Path</label>
+    <div id="filesystem">
+      <div class="label-container">
+        <label for="filepath">File Path</label>
+      </div>
+      <input id="filepath" type="text" formControlName="filepath" placeholder="e.g. /src/opt/path" class=""/>
+      <div class="label-container">
+        <label for="filetype">File Type</label>
+      </div>
+      <input id="filetype" type="text" formControlName="filetype" placeholder="e.g. csv or json" class=""/>
     </div>
-    <input id="filepath" type="text" formControlName="filepath" placeholder="e.g. File Path" class="optional"/>
-    <div class="label-container">
-      <label for="filetype">File Type</label>
+    <div id="database">
+      <div class="label-container">
+        <label for="sourceurl">Source URL</label>
+      </div>
+      <input id="sourceurl" type="text" formControlName="sourceurl" placeholder="e.g. Source URL" class="optional"/>
+      <div class="label-container">
+        <label for="schema">Schema Keyspace</label>
+      </div>
+      <input id="schema" type="text" formControlName="schema" placeholder="e.g. Employee or Order" class="optional"/>
     </div>
-    <input id="filetype" type="text" formControlName="filetype" placeholder="e.g. File Type" class="optional"/>
-    <div class="label-container">
-      <label for="sourceurl">Source URL</label>
+    <div id="kafka">
+      <div class="label-container">
+        <label for="kafkaurl">Kafka Source URL</label>
+      </div>
+      <input id="kafkaurl" type="text" formControlName="kafkaurl" placeholder="e.g. Kafka Source URL" class="optional"/>
+      <div class="label-container">
+        <label for="topicname">Topic Name</label>
+      </div>
+      <input id="topicname" type="text" formControlName="topicname" placeholder="e.g. Topic Name" class="optional"/>
+      <div class="label-container">
+        <label for="topictype">Topic Type</label>
+      </div>
+      <input id="topictype" type="text" formControlName="topictype" placeholder="e.g. JSON or YAML" class="optional"/>
     </div>
-    <input id="sourceurl" type="text" formControlName="sourceurl" placeholder="e.g. Source URL" class="optional"/>
-    <div class="label-container">
-      <label for="schema">Schema Keyspace</label>
-    </div>
-    <input id="schema" type="text" formControlName="schema" placeholder="e.g. Schema Name" class="optional"/>
     <h2>Configurations</h2>
-    <div class="label-container">
-      <label for="tablename">Table Name</label>
-    </div>
     <input id="tablename" type="text" formControlName="tablename" placeholder="e.g. Table Name" class="optional"/>
-      <input id="columnname" type="text" formControlName="columnname" placeholder="Column Name" style="width:40%;" class="optional"/>
-      <input id="columntype" type="text" formControlName="columntype" placeholder="Column Type" style="width:40%;" class="optional"/>
-      <button type="button" (click)="addColumn()" class="btn btn-primary" style="margin-left: 20px;padding:10px;">Add</button>
+    <input id="columnname" type="text" formControlName="columnname" placeholder="Column Name" style="width:40%;" class="optional"/>
+    <input id="columntype" type="text" formControlName="columntype" placeholder="Column Type" style="width:40%;" class="optional"/>
+    <button type="button" (click)="addColumn()" class="btn btn-primary" style="margin-left: 20px;padding:10px;">Add</button>
     <table class="table table-striped table-dark">
       <thead>
         <tr>

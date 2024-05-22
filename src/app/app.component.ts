@@ -30,6 +30,9 @@ export class AppComponent {
   protected filetype!: String;
   protected sourceurl!: String;
   protected schema!: String;
+  protected kafkaurl!: String;
+  protected topicname!: String;
+  protected topictype!: String;
 
   protected format!: String;
   protected bucket!: String;
@@ -47,11 +50,14 @@ export class AppComponent {
     vaulturl: new FormControl('', [Validators.required]),
     accesskey: new FormControl('', [Validators.required]),
     secretkey: new FormControl('', [Validators.required]),
-    type: new FormControl('', [Validators.required]),
+    type: new FormControl('FILE_SYSTEM', [Validators.required]),
     filepath: new FormControl(''),
     filetype: new FormControl(''),
     sourceurl: new FormControl(''),
     schema: new FormControl(''),
+    kafkaurl: new FormControl(''),
+    topicname: new FormControl(''),
+    topictype: new FormControl(''),
     format: new FormControl('', [Validators.required]),
     bucket: new FormControl('', [Validators.required]),
     path: new FormControl('', [Validators.required]),
@@ -83,42 +89,59 @@ export class AppComponent {
 
   hideFields(): void {
     let typeSelected = this.jobForm.value.type;
+
+    const filesystemDiv = this.document.getElementById("filesystem") as HTMLElement;
+    const databaseDiv = this.document.getElementById("database") as HTMLElement;
+    const kafkaDiv = this.document.getElementById("kafka") as HTMLElement;
+
     const filepathEl = this.document.getElementById("filepath") as HTMLElement;
     const filetypeEl = this.document.getElementById("filetype") as HTMLElement;
     const sourceurlEl = this.document.getElementById("sourceurl") as HTMLElement;
     const schemaEl = this.document.getElementById("schema") as HTMLElement;
+    const kafkaurlEl = this.document.getElementById("kafkaurl") as HTMLElement;
+    const topicnameEl = this.document.getElementById("topicname") as HTMLElement;
+    const topictypeEl = this.document.getElementById("topictype") as HTMLElement;
+
     switch(typeSelected) {
       case "FILE_SYSTEM":
-        this.jobForm.controls['filepath'].enable();
+        filesystemDiv.style.display = 'block';
+        databaseDiv.style.display = 'none';
+        kafkaDiv.style.display = 'none';
+
         filepathEl.classList.remove("optional");
-        this.jobForm.controls['filetype'].enable();
         filetypeEl.classList.remove("optional");
-        this.jobForm.controls['sourceurl'].disable();
         sourceurlEl.classList.add("optional");
-        this.jobForm.controls['schema'].disable();
         schemaEl.classList.add("optional");
-         break;
+        kafkaurlEl.classList.add("optional");
+        topicnameEl.classList.add("optional");
+        topictypeEl.classList.add("optional");
+        break;
       case "DATABASE":
-        this.jobForm.controls['filepath'].disable();
+        filesystemDiv.style.display = 'none';
+        databaseDiv.style.display = 'block';
+        kafkaDiv.style.display = 'none';
+
         filepathEl.classList.add("optional");
-        this.jobForm.controls['filetype'].disable();
         filetypeEl.classList.add("optional");
-        this.jobForm.controls['sourceurl'].enable();
         sourceurlEl.classList.remove("optional");
-        this.jobForm.controls['schema'].enable();
         schemaEl.classList.remove("optional");
-         break;
+        kafkaurlEl.classList.add("optional");
+        topicnameEl.classList.add("optional");
+        topictypeEl.classList.add("optional");
+        break;
       default:
-        this.jobForm.controls['filepath'].disable();
+        filesystemDiv.style.display = 'none';
+        databaseDiv.style.display = 'none';
+        kafkaDiv.style.display = 'block';
+
         filepathEl.classList.add("optional");
-        this.jobForm.controls['filetype'].disable();
         filetypeEl.classList.add("optional");
-        this.jobForm.controls['sourceurl'].disable();
         sourceurlEl.classList.add("optional");
-        this.jobForm.controls['schema'].disable();
         schemaEl.classList.add("optional");
-        
-         break;
+        kafkaurlEl.classList.remove("optional");
+        topicnameEl.classList.remove("optional");
+        topictypeEl.classList.remove("optional");
+        break;
     }
   }
 
@@ -219,22 +242,19 @@ export class AppComponent {
               }]
             };
             break;
-          // case "KAFKA_STREAM":
-          //   payload = {
-          //     "jobName": this.jobForm.value.jobname,
-          //     "jobDescription": this.jobForm.value.jobdesc,
-          //     "source_type": this.jobForm.value.jobname,
-          //     "source_url": this.jobForm.value.jobdesc,
-          //     "topicName": this.jobForm.value.jobdesc,
-          //     "topicType": this.jobForm.value.jobdesc,
-          //     "source": {
-          //       "source_url": this.jobForm.value.format,
-          //       "is_streaming": this.jobForm.value.bucket,
-          // "jobConfigurations": [{
-          //   "columns" : this.columnList
-          // }]
-          //   };
-          //   break;
+          case "KAFKA_STREAM":
+            payload = {
+              "jobName": this.jobForm.value.jobname,
+              "jobDescription": this.jobForm.value.jobdesc,
+              "source_type": this.jobForm.value.jobname,
+              "source_url": this.jobForm.value.kafkaurl,
+              "topicName": this.jobForm.value.topicname,
+              "topicType": this.jobForm.value.topictype,
+              "jobConfigurations": [{
+                "columns" : this.columnList
+              }]
+            };
+            break;
       }
       this.httpService.post("/datajobconfig/v1/api/jobconfigurations", payload).subscribe();
     } else if (this.currentTab == 4) {

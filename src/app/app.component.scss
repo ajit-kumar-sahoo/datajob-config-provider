@@ -67,3 +67,7 @@ input.invalid {
 .prime-btn:hover, .prime-btn:active {
   background-image: linear-gradient(to bottom left, #62B34F, #007C43);
 }
+
+#database, #kafka {
+  display: none;
+}
