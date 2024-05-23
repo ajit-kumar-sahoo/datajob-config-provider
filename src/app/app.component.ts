@@ -187,6 +187,7 @@ export class AppComponent {
     let tabs = this.document.getElementsByClassName("tab");
     const myHtmlEl = tabs.item(this.currentTab) as HTMLElement;
     myHtmlEl.style.display = 'none';
+    this.columnList = [];
     this.currentTab = 0;
     this.jobForm.reset();
     this.showTab(0);

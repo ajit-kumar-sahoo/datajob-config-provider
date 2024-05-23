@@ -1,148 +1,156 @@
-<div class="container" style="width: 50%; margin: 0px auto;">
-  <form id="regForm" [formGroup]="jobForm" autocomplete="off">
+<main>
+<div class="card">
+  <div class="row">
+  <div class="col-xl-6 card-body">
+    <form id="regForm" [formGroup]="jobForm" autocomplete="off">
 
-  <h1 style="text-align: center;margin-bottom: 40px;">Data Job Config Provider</h1>
-  
-  <div class="tab">
-    <h2>Job Name & Description:</h2>
-    <div class="label-container">
-      <label for="jobname">Name</label>
-    </div>
-    <input id="jobname" type="text" formControlName="jobname" placeholder="e.g. Job Name"/>
-    <div class="label-container">
-      <label for="jobdesc">Description</label>
-     </div>
-    <input id="jobdesc" type="text" formControlName="jobdesc" placeholder="e.g. Job Description"/>    
-  </div>
-  
-  <div class="tab">
-    <h2>Access Data:</h2>
-    <div class="label-container">
-      <label for="vaulturl">Vault URL</label>
-    </div>
-    <input id="vaulturl" type="text" formControlName="vaulturl" placeholder="e.g. Vault URL"/>
-    <div class="label-container">
-      <label for="accesskey">Access Key</label>
-    </div>
-    <input id="accesskey" type="password" formControlName="accesskey" placeholder="e.g. Access Key"/>
-    <div class="label-container">
-      <label for="secretkey">Secret Key</label>
-    </div>
-    <input id="secretkey" type="password" formControlName="secretkey" placeholder="e.g. Secret Key"/>
-  </div>
-  
-  <div class="tab">
-    <h2>Job Configurations:</h2>
-    <div class="label-container">
-      <label for="type">Type</label>
-      <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="type" formControlName="type" (change)="hideFields()">
-        <option value="FILE_SYSTEM" selected>FILE SYSTEM</option>
-        <option value="DATABASE">DATABASE</option>
-        <option value="KAFKA_STREAM">KAFKA STREAM</option>
-      </select>
-    </div>
-    <div id="filesystem">
+    <h1 style="text-align: center;margin-bottom: 40px;">Data Job Config Provider</h1>
+    
+    <div class="tab">
+      <h2>Job Name & Description:</h2>
       <div class="label-container">
-        <label for="filepath">File Path</label>
+        <label for="jobname">Name</label>
       </div>
-      <input id="filepath" type="text" formControlName="filepath" placeholder="e.g. /src/opt/path" class=""/>
+      <input id="jobname" type="text" formControlName="jobname" placeholder="e.g. Job Name"/>
       <div class="label-container">
-        <label for="filetype">File Type</label>
+        <label for="jobdesc">Description</label>
       </div>
-      <input id="filetype" type="text" formControlName="filetype" placeholder="e.g. csv or json" class=""/>
+      <input id="jobdesc" type="text" formControlName="jobdesc" placeholder="e.g. Job Description"/>    
     </div>
-    <div id="database">
+    
+    <div class="tab">
+      <h2>Access Data:</h2>
       <div class="label-container">
-        <label for="sourceurl">Source URL</label>
+        <label for="vaulturl">Vault URL</label>
       </div>
-      <input id="sourceurl" type="text" formControlName="sourceurl" placeholder="e.g. Source URL" class="optional"/>
+      <input id="vaulturl" type="text" formControlName="vaulturl" placeholder="e.g. Vault URL"/>
       <div class="label-container">
-        <label for="schema">Schema Keyspace</label>
+        <label for="accesskey">Access Key</label>
       </div>
-      <input id="schema" type="text" formControlName="schema" placeholder="e.g. Employee or Order" class="optional"/>
+      <input id="accesskey" type="password" formControlName="accesskey" placeholder="e.g. Access Key"/>
+      <div class="label-container">
+        <label for="secretkey">Secret Key</label>
+      </div>
+      <input id="secretkey" type="password" formControlName="secretkey" placeholder="e.g. Secret Key"/>
     </div>
-    <div id="kafka">
+    
+    <div class="tab">
+      <h2>Job Configurations:</h2>
       <div class="label-container">
-        <label for="kafkaurl">Kafka Source URL</label>
+        <label for="type">Type</label>
+        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="type" formControlName="type" (change)="hideFields()">
+          <option value="FILE_SYSTEM" selected>FILE SYSTEM</option>
+          <option value="DATABASE">DATABASE</option>
+          <option value="KAFKA_STREAM">KAFKA STREAM</option>
+        </select>
       </div>
-      <input id="kafkaurl" type="text" formControlName="kafkaurl" placeholder="e.g. Kafka Source URL" class="optional"/>
-      <div class="label-container">
-        <label for="topicname">Topic Name</label>
+      <div id="filesystem">
+        <div class="label-container">
+          <label for="filepath">File Path</label>
+        </div>
+        <input id="filepath" type="text" formControlName="filepath" placeholder="e.g. /src/opt/path" class=""/>
+        <div class="label-container">
+          <label for="filetype">File Type</label>
+        </div>
+        <input id="filetype" type="text" formControlName="filetype" placeholder="e.g. csv or json" class=""/>
       </div>
-      <input id="topicname" type="text" formControlName="topicname" placeholder="e.g. Topic Name" class="optional"/>
-      <div class="label-container">
-        <label for="topictype">Topic Type</label>
+      <div id="database">
+        <div class="label-container">
+          <label for="sourceurl">Source URL</label>
+        </div>
+        <input id="sourceurl" type="text" formControlName="sourceurl" placeholder="e.g. Source URL" class="optional"/>
+        <div class="label-container">
+          <label for="schema">Schema Keyspace</label>
+        </div>
+        <input id="schema" type="text" formControlName="schema" placeholder="e.g. Employee or Order" class="optional"/>
       </div>
-      <input id="topictype" type="text" formControlName="topictype" placeholder="e.g. JSON or YAML" class="optional"/>
+      <div id="kafka">
+        <div class="label-container">
+          <label for="kafkaurl">Kafka Source URL</label>
+        </div>
+        <input id="kafkaurl" type="text" formControlName="kafkaurl" placeholder="e.g. Kafka Source URL" class="optional"/>
+        <div class="label-container">
+          <label for="topicname">Topic Name</label>
+        </div>
+        <input id="topicname" type="text" formControlName="topicname" placeholder="e.g. Topic Name" class="optional"/>
+        <div class="label-container">
+          <label for="topictype">Topic Type</label>
+        </div>
+        <input id="topictype" type="text" formControlName="topictype" placeholder="e.g. JSON or YAML" class="optional"/>
+      </div>
+      <h2>Configurations</h2>
+      <input id="tablename" type="text" formControlName="tablename" placeholder="e.g. Table Name" class="optional"/>
+      <input id="columnname" type="text" formControlName="columnname" placeholder="Column Name" style="width:40%;" class="optional"/>
+      <input id="columntype" type="text" formControlName="columntype" placeholder="Column Type" style="width:40%;" class="optional"/>
+      <button type="button" (click)="addColumn()" class="prime-btn" style="margin-left: 20px;">Add</button>
+      <table class="table table-striped table-dark">
+        <thead>
+          <tr>
+            <th>Columna Name</th>
+            <th>Columna Type</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let col of columnList">
+            <td>{{col.name}}</td>
+            <td>{{col.type}}</td>
+            <td (click)="deleteRow(col)"><i class="fa fa-trash"></i></td>
+          </tr>
+      </tbody>
+      </table>
     </div>
-    <h2>Configurations</h2>
-    <input id="tablename" type="text" formControlName="tablename" placeholder="e.g. Table Name" class="optional"/>
-    <input id="columnname" type="text" formControlName="columnname" placeholder="Column Name" style="width:40%;" class="optional"/>
-    <input id="columntype" type="text" formControlName="columntype" placeholder="Column Type" style="width:40%;" class="optional"/>
-    <button type="button" (click)="addColumn()" class="btn btn-primary" style="margin-left: 20px;padding:10px;">Add</button>
-    <table class="table table-striped table-dark">
-      <thead>
-        <tr>
-          <th>Columna Name</th>
-          <th>Columna Type</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let col of columnList">
-          <td>{{col.name}}</td>
-          <td>{{col.type}}</td>
-          <td (click)="deleteRow(col)"><i class="fa fa-trash"></i></td>
-        </tr>
-    </tbody>
-    </table>
-  </div>
 
-  <div class="tab">
-    <h2>Destination Details:</h2>
-    <div class="label-container">
-      <label for="format">Format</label>
+    <div class="tab">
+      <h2>Destination Details:</h2>
+      <div class="label-container">
+        <label for="format">Format</label>
+      </div>
+      <input id="format" type="text" formControlName="format" placeholder="e.g. avro"/>
+      <div class="label-container">
+        <label for="bucket">Bucket</label>
+      </div>
+      <input id="bucket" type="text" formControlName="bucket" placeholder="e.g. GCP:Bucket"/>
+      <div class="label-container">
+        <label for="path">Path</label>
+      </div>
+      <input id="path" type="text" formControlName="path" placeholder="e.g. Path"/>
+      <div class="label-container">
+        <label for="dname">Name</label>
+      </div>
+      <input id="dname" type="text" formControlName="dname" placeholder="e.g. Name"/>
+      <div class="label-container">
+        <label for="prefix">Prefix</label>
+      </div>
+      <input id="prefix" type="text" formControlName="prefix" placeholder="e.g. Prefix"/>
     </div>
-    <input id="format" type="text" formControlName="format" placeholder="e.g. avro"/>
-    <div class="label-container">
-      <label for="bucket">Bucket</label>
-    </div>
-    <input id="bucket" type="text" formControlName="bucket" placeholder="e.g. GCP:Bucket"/>
-    <div class="label-container">
-      <label for="path">Path</label>
-    </div>
-    <input id="path" type="text" formControlName="path" placeholder="e.g. Path"/>
-    <div class="label-container">
-      <label for="dname">Name</label>
-    </div>
-    <input id="dname" type="text" formControlName="dname" placeholder="e.g. Name"/>
-    <div class="label-container">
-      <label for="prefix">Prefix</label>
-    </div>
-    <input id="prefix" type="text" formControlName="prefix" placeholder="e.g. Prefix"/>
-  </div>
 
-  <div class="tab">
-    <h2>Job configuration has been submitted successfully.<br/>To initiate one more job configuration click on the <strong>start again</strong> below</h2>
-    <div style="display: flex; justify-content: center;margin-bottom: 40px;">
-      <button type="button" id="startBtn" (click)="restart()" class="prime-btn">Start Again</button>
+    <div class="tab">
+      <h2>Job configuration has been submitted successfully.<br/>To initiate one more job configuration click on the <strong>start again</strong> below</h2>
+      <div style="display: flex; justify-content: center;margin-bottom: 40px;">
+        <button type="button" id="startBtn" (click)="restart()" class="prime-btn">Start Again</button>
+      </div>
     </div>
-  </div>
-  
-  <div style="overflow:auto;">
-    <div style="float:right;">
-      <button type="button" id="prevBtn" (click)="nextPrev(-1)" class="prime-btn">Previous</button>
-      <button type="button" id="nextBtn" (click)="nextPrev(1)" class="prime-btn">Next</button>
+    
+    <div style="overflow:auto;">
+      <div style="float:right;">
+        <button type="button" id="prevBtn" (click)="nextPrev(-1)" class="prime-btn">Previous</button>
+        <button type="button" id="nextBtn" (click)="nextPrev(1)" class="prime-btn">Next</button>
+      </div>
     </div>
+    
+    <div style="text-align:center;margin-top:40px;">
+      <span class="step"></span>
+      <span class="step"></span>
+      <span class="step"></span>
+      <span class="step"></span>
+      <span class="step"></span>
+    </div>
+    </form>
   </div>
-  
-  <div style="text-align:center;margin-top:40px;">
-    <span class="step"></span>
-    <span class="step"></span>
-    <span class="step"></span>
-    <span class="step"></span>
-    <span class="step"></span>
+  <div class="col-xl-6 d-none d-xl-block">
+    <img src="assets/applicatin.jpg" alt="applicatin" class="img-fluid"/>
   </div>
-  
-  </form>
+  </div>
 </div>
+</main>
