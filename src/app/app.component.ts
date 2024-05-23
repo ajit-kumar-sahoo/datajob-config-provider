@@ -69,10 +69,12 @@ export class AppComponent {
   }
 
   addColumn(): void {
-    let column = {'name' : this.jobForm.value.columnname, 'type': this.jobForm.value.columntype};
-    this.columnList.push(column);
-    this.jobForm.controls.columnname.reset("");
-    this.jobForm.controls.columntype.reset("");
+    if(this.jobForm.value.columnname && this.jobForm.value.columntype) {
+      let column = {'name' : this.jobForm.value.columnname, 'type': this.jobForm.value.columntype};
+      this.columnList.push(column);
+      this.jobForm.controls.columnname.reset("");
+      this.jobForm.controls.columntype.reset("");
+    }
   }
 
   deleteColumn(item: any): void {
@@ -91,11 +93,13 @@ export class AppComponent {
     const kafkaurlEl = this.document.getElementById("kafkaurl") as HTMLElement;
     const topicnameEl = this.document.getElementById("topicname") as HTMLElement;
     const topictypeEl = this.document.getElementById("topictype") as HTMLElement;
+    const tableEl = this.document.getElementById("tablename") as HTMLElement;
     switch(typeSelected) {
       case "FILE_SYSTEM":
         filesystemDiv.style.display = 'block';
         databaseDiv.style.display = 'none';
         kafkaDiv.style.display = 'none';
+        tableEl.style.display = 'none';
         filepathEl.classList.remove("optional");
         filetypeEl.classList.remove("optional");
         sourceurlEl.classList.add("optional");
@@ -108,6 +112,7 @@ export class AppComponent {
         filesystemDiv.style.display = 'none';
         databaseDiv.style.display = 'block';
         kafkaDiv.style.display = 'none';
+        tableEl.style.display = 'block';
         filepathEl.classList.add("optional");
         filetypeEl.classList.add("optional");
         sourceurlEl.classList.remove("optional");
@@ -120,6 +125,7 @@ export class AppComponent {
         filesystemDiv.style.display = 'none';
         databaseDiv.style.display = 'none';
         kafkaDiv.style.display = 'block';
+        tableEl.style.display = 'none';
         filepathEl.classList.add("optional");
         filetypeEl.classList.add("optional");
         sourceurlEl.classList.add("optional");
@@ -207,7 +213,7 @@ export class AppComponent {
               "source_type": this.jobForm.value.type,
               "source_url": this.jobForm.value.sourceurl,
               "schema": this.jobForm.value.schema,
-              "jobConfigurations": [{
+              "dataBaseJobConfigurations": [{
                 "tables" : [{
                   "name" : this.jobForm.value.tablename,
                   "columns" : this.columnList

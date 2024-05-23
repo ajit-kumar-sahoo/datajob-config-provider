@@ -92,10 +92,10 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let col of columnList">
+              <tr *ngFor="let col of columnList; let i = index;">
                 <td>{{col.name}}</td>
                 <td>{{col.type}}</td>
-                <td (click)="deleteColumn(col)"><i class="fa fa-trash"></i></td>
+                <td (click)="deleteColumn(i)" style="cursor: pointer;"><i class="fa fa-trash" title="delete"></i></td>
               </tr>
           </tbody>
           </table>
