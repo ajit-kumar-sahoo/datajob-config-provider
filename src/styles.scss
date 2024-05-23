@@ -6,10 +6,7 @@ body {
     background-size: 504px 100% !important;
     background-repeat: no-repeat !important;
     background-position: right !important;
-  }
-
-  
-
+}
 main {
     padding-left: 83px;
     padding-right: 382px;
@@ -19,9 +16,8 @@ main {
     unicode-bidi: isolate;
     min-height: 100vh !important;
     display: flex !important;
-  }
-  
-  .card {
+}
+.card {
     width: 100%;
     border-radius: 23px;
     box-shadow: 0 1px 20px 0px rgba(0, 0, 0, 0.1);
@@ -29,65 +25,53 @@ main {
     margin-top: auto;
     margin-bottom: auto;
     position: relative;
-    display: -ms-flexbox;
     display: flex;
-    -ms-flex-direction: column;
     flex-direction: column;
     min-width: 0;
     word-wrap: break-word;
-    background-color: #fff;
     background-clip: border-box;
     border: 1px solid rgba(0, 0, 0, .125);
-    border-radius: .25rem;
     unicode-bidi: isolate;
-  }
-  
-  .label-container {
+}
+.label-container {
     color: rgba(40, 40, 40, 0.8);
     font-size: 20px;
     font-weight: 600;
     line-height: 1.45em;
     margin-bottom: 10px;
-  }
-  
-  .card-body {
-    padding: 80px 90px 65px 80px;
+}
+.card-body {
+    padding: 60px 90px 65px 80px;
     flex: 1 1 auto;
     min-height: 1px;
-  }
-    
-  input {
+}
+input {
     padding: 10px;
     width: 100%;
     font-size: 20px;
     border: 1px solid #aaaaaa;
-    margin-bottom: 15px;;
-  }
-  
-  input.invalid {
+    margin-bottom: 15px;
+}
+input.invalid {
     background-color: #ffdddd;
-  }
-  
-  .tab {
+}
+.tab {
     display: none;
-  }
-  
-  .step {
-    height: 25px;
-    width: 25px;
+}
+.step {
+    height: 40px;
+    width: 40px;
     margin: 0 2px;
     background-color: #007C43;
     border: none;
     border-radius: 50%;
     display: inline-block;
     opacity: 0.3;
-  }
-    
-  .step.active {
+} 
+.step.active {
     opacity: 1;
-  }
-  
-  .prime-btn {
+}
+.prime-btn {
     font-weight: bold;
     font-size: 20px;
     color: black;
@@ -97,21 +81,17 @@ main {
     margin-left: 10px;
     border-radius: 10px;
     border: none;
-  }
-  
-  .prime-btn:hover, .prime-btn:active {
+}
+.prime-btn:hover, .prime-btn:active {
     background-image: linear-gradient(to bottom left, #62B34F, #007C43);
-  }
-  
-  #database, #kafka {
+}
+#database, #kafka {
     display: none;
-  }
-  
-  *, ::after, ::before {
+}
+*, ::after, ::before {
     box-sizing: border-box;
-  }
-
-  @media (max-width: 767px) {
+}
+@media (max-width: 767px) {
     .bd-wizard-card .card-body {
         padding: 50px 20px 20px;
     }

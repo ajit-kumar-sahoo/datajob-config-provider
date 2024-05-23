@@ -1,30 +1,26 @@
-import { Component, ElementRef, Inject, Input, ViewChild } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router, RouterOutlet, NavigationExtras } from '@angular/router';
-import { DOCUMENT, NgFor } from '@angular/common'; 
-import { BrowserModule } from '@angular/platform-browser';
+import { DOCUMENT, NgFor } from '@angular/common';
 import { HttpService } from './http.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NgFor, ReactiveFormsModule],
+  imports: [NgFor, ReactiveFormsModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'datajob-config-provider';
+
   currentTab: number = 0;
   typeList: any = ["Database", "Kafka", "Filesystem"];
-  tableList: any;
-  columnList: any;
+  columnList: any = [];
 
   protected jobname!: String;
   protected jobdesc!: String;
   protected vaulturl!: String;
   protected accesskey!: String;
   protected secretkey!: String;
-
   protected type!: String;
   protected filepath!: String;
   protected filetype!: String;
@@ -33,13 +29,11 @@ export class AppComponent {
   protected kafkaurl!: String;
   protected topicname!: String;
   protected topictype!: String;
-
   protected format!: String;
   protected bucket!: String;
   protected path!: String;
   protected dname!: String;
   protected prefix!: String;
-
   protected tablename!: String;
   protected columnname!: String;
   protected columntype!: String;
@@ -68,9 +62,7 @@ export class AppComponent {
     columntype: new FormControl('', [Validators.required])
   });
   
-  constructor(@Inject(DOCUMENT) private document: Document, private httpService: HttpService) { 
-    this.columnList = [];
-  }
+  constructor(@Inject(DOCUMENT) private document: Document, private httpService: HttpService) {}
   
   ngAfterViewInit() {
     this.showTab(this.currentTab);
@@ -83,17 +75,15 @@ export class AppComponent {
     this.jobForm.controls.columntype.reset("");
   }
 
-  deleteRow(item: any): void {
+  deleteColumn(item: any): void {
     this.columnList.splice(item, 1);
   }
 
   hideFields(): void {
     let typeSelected = this.jobForm.value.type;
-
     const filesystemDiv = this.document.getElementById("filesystem") as HTMLElement;
     const databaseDiv = this.document.getElementById("database") as HTMLElement;
     const kafkaDiv = this.document.getElementById("kafka") as HTMLElement;
-
     const filepathEl = this.document.getElementById("filepath") as HTMLElement;
     const filetypeEl = this.document.getElementById("filetype") as HTMLElement;
     const sourceurlEl = this.document.getElementById("sourceurl") as HTMLElement;
@@ -101,13 +91,11 @@ export class AppComponent {
     const kafkaurlEl = this.document.getElementById("kafkaurl") as HTMLElement;
     const topicnameEl = this.document.getElementById("topicname") as HTMLElement;
     const topictypeEl = this.document.getElementById("topictype") as HTMLElement;
-
     switch(typeSelected) {
       case "FILE_SYSTEM":
         filesystemDiv.style.display = 'block';
         databaseDiv.style.display = 'none';
         kafkaDiv.style.display = 'none';
-
         filepathEl.classList.remove("optional");
         filetypeEl.classList.remove("optional");
         sourceurlEl.classList.add("optional");
@@ -120,7 +108,6 @@ export class AppComponent {
         filesystemDiv.style.display = 'none';
         databaseDiv.style.display = 'block';
         kafkaDiv.style.display = 'none';
-
         filepathEl.classList.add("optional");
         filetypeEl.classList.add("optional");
         sourceurlEl.classList.remove("optional");
@@ -133,7 +120,6 @@ export class AppComponent {
         filesystemDiv.style.display = 'none';
         databaseDiv.style.display = 'none';
         kafkaDiv.style.display = 'block';
-
         filepathEl.classList.add("optional");
         filetypeEl.classList.add("optional");
         sourceurlEl.classList.add("optional");
@@ -145,41 +131,27 @@ export class AppComponent {
     }
   }
 
-  refresh(): void {
-    window.location.reload();
-  }
-
   showTab(n: number): void {
-    
-    // Only show the selected tab
     let tabs = this.document.getElementsByClassName("tab");
     const myHtmlEl = tabs.item(n) as HTMLElement;
     myHtmlEl.style.display = 'block';
-
-    // Decide whether to show the previous button or not
     const prevBtnEl = this.document.getElementById("prevBtn") as HTMLElement;
     const nextBtnEl = this.document.getElementById("nextBtn") as HTMLElement;
-
     if (n == 0) {
       prevBtnEl.style.display = "none";
       nextBtnEl.style.display = "inline";
     } else {
       prevBtnEl.style.display = "inline";
     }
-
-    // Decide whether to show the previous button or not
     if (n == (tabs.length - 2)) {
       nextBtnEl.innerHTML = "Submit";
     } else {
       nextBtnEl.innerHTML = "Next";
     } 
-
     if (n == (tabs.length - 1)) {
       prevBtnEl.style.display = "none";
       nextBtnEl.style.display = "none";
     }
-
-    // ... and run a function that displays the correct step indicator:
     this.fixStepIndicator(n);
   }
 
@@ -272,11 +244,9 @@ export class AppComponent {
       };
       this.httpService.post("/datajobconfig/v1/api/destinationDetail", payload).subscribe();
     }
-
     if (this.currentTab >= tabs.length) {
       return false;
     }
-
     this.showTab(this.currentTab);
     return true;
   }
