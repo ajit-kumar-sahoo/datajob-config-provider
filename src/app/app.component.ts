@@ -94,12 +94,14 @@ export class AppComponent {
     const topicnameEl = this.document.getElementById("topicname") as HTMLElement;
     const topictypeEl = this.document.getElementById("topictype") as HTMLElement;
     const tableEl = this.document.getElementById("tablename") as HTMLElement;
+    const configEl = this.document.getElementById("config") as HTMLElement;
     switch(typeSelected) {
       case "FILE_SYSTEM":
         filesystemDiv.style.display = 'block';
         databaseDiv.style.display = 'none';
         kafkaDiv.style.display = 'none';
         tableEl.style.display = 'none';
+        configEl.style.display = 'block';
         filepathEl.classList.remove("optional");
         filetypeEl.classList.remove("optional");
         sourceurlEl.classList.add("optional");
@@ -113,6 +115,7 @@ export class AppComponent {
         databaseDiv.style.display = 'block';
         kafkaDiv.style.display = 'none';
         tableEl.style.display = 'block';
+        configEl.style.display = 'block';
         filepathEl.classList.add("optional");
         filetypeEl.classList.add("optional");
         sourceurlEl.classList.remove("optional");
@@ -126,6 +129,7 @@ export class AppComponent {
         databaseDiv.style.display = 'none';
         kafkaDiv.style.display = 'block';
         tableEl.style.display = 'none';
+        configEl.style.display = 'none';
         filepathEl.classList.add("optional");
         filetypeEl.classList.add("optional");
         sourceurlEl.classList.add("optional");

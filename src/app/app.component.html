@@ -6,7 +6,7 @@
       </div>
     </div>
     <div class="row">
-    <div class="col-xl-6 card-body">
+    <div class="col-xl-7 card-body">
       <form id="regForm" [formGroup]="jobForm" autocomplete="off">
         <div class="tab">
           <h2>Job Name & Description:</h2>
@@ -78,27 +78,29 @@
             </div>
             <input id="topictype" type="text" formControlName="topictype" placeholder="e.g. JSON or YAML" class="optional"/>
           </div>
-          <h2>Configurations</h2>
-          <input id="tablename" type="text" formControlName="tablename" placeholder="e.g. Table Name" class="optional"/>
-          <input id="columnname" type="text" formControlName="columnname" placeholder="Column Name" style="width:40%;" class="optional"/>
-          <input id="columntype" type="text" formControlName="columntype" placeholder="Column Type" style="width:40%;" class="optional"/>
-          <button type="button" (click)="addColumn()" class="prime-btn" style="margin-left: 20px;">Add</button>
-          <table class="table table-striped table-dark">
-            <thead>
-              <tr>
-                <th>Columna Name</th>
-                <th>Columna Type</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let col of columnList; let i = index;">
-                <td>{{col.name}}</td>
-                <td>{{col.type}}</td>
-                <td (click)="deleteColumn(i)" style="cursor: pointer;"><i class="fa fa-trash" title="delete"></i></td>
-              </tr>
-          </tbody>
-          </table>
+          <div id="config">
+            <h2>Configurations</h2>
+            <input id="tablename" type="text" formControlName="tablename" placeholder="e.g. Table Name" class="optional"/>
+            <input id="columnname" type="text" formControlName="columnname" placeholder="Column Name" style="width:35%;" class="optional"/>
+            <input id="columntype" type="text" formControlName="columntype" placeholder="Column Type" style="width:35%;" class="optional"/>
+            <button type="button" (click)="addColumn()" class="prime-btn" style="margin-left: 10px;">Add</button>
+            <table class="table table-striped table-dark">
+              <thead>
+                <tr>
+                  <th>Columna Name</th>
+                  <th>Columna Type</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let col of columnList; let i = index;">
+                  <td>{{col.name}}</td>
+                  <td>{{col.type}}</td>
+                  <td (click)="deleteColumn(i)" style="cursor: pointer;"><i class="fa fa-trash" title="delete"></i></td>
+                </tr>
+            </tbody>
+            </table>
+          </div>
         </div>
         <div class="tab">
           <h2>Destination Details:</h2>
@@ -139,7 +141,7 @@
         </div>
       </form>
     </div>
-    <div class="col-xl-6 d-none d-xl-block">
+    <div class="col-xl-5 d-none d-xl-block">
       <img src="assets/applicatin.jpg" alt="applicatin" class="img-fluid"/>
     </div>
     </div>
