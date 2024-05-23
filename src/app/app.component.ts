@@ -170,6 +170,7 @@ export class AppComponent {
     const myHtmlEl = tabs.item(this.currentTab) as HTMLElement;
     myHtmlEl.style.display = 'none';
     this.columnList = [];
+    this.jobForm.value.type = 'FILE_SYSTEM';
     this.currentTab = 0;
     this.jobForm.reset();
     this.showTab(0);
