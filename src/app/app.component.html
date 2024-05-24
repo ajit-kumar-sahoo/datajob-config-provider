@@ -133,6 +133,95 @@
           <input id="prefix" type="text" formControlName="prefix" placeholder="e.g. Prefix"/>
         </div>
         <div class="tab">
+          <table class="table table-bordered">
+            <tbody>
+              <tr colspan="2" class="col-head">
+                <th>Job Details</th>
+              </tr>
+              <tr>
+                <td>Job Name</td>
+                <td>{{this.jobForm.value.jobname}}</td>
+              </tr>
+              <tr>
+                <td>Job Description</td>
+                <td>{{this.jobForm.value.jobdesc}}</td>
+              </tr>
+              <tr colspan="2" class="col-head">
+                <th>Access Data</th>
+              </tr>
+              <tr>
+                <td>Vault URL</td>
+                <td>{{this.jobForm.value.vaulturl}}</td>
+              </tr>
+              <tr>
+                <td>Access Key</td>
+                <td>{{this.jobForm.value.accesskey}}</td>
+              </tr>
+              <tr>
+                <td>Secret Key</td>
+                <td>{{this.jobForm.value.secretkey}}</td>
+              </tr>
+              <tr colspan="2" class="col-head">
+                <th>Job Configurations</th>
+              </tr>
+              <tr>
+                <td>Type</td>
+                <td>{{this.jobForm.value.type}}</td>
+              </tr>
+              <tr>
+                <td>File Path</td>
+                <td>{{this.jobForm.value.filepath}}</td>
+              </tr>
+              <tr>
+                <td>File Type</td>
+                <td>{{this.jobForm.value.filetype}}</td>
+              </tr>
+              <tr>
+                <td>Column List</td>
+                <td id="col-td">
+                  <table class="table table-bordered col-table">
+                    <thead>
+                      <tr>
+                        <th>Column Name</th>
+                        <th>Column Type</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let col of columnList">
+                        <td>{{col.name}}</td>
+                        <td>{{col.type}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+              <tr colspan="2" class="col-head">
+                <th>Destination details</th>
+              </tr>
+              <tr>
+                <td>Format</td>
+                <td>{{this.jobForm.value.format}}</td>
+              </tr>
+              <tr>
+                <td>Bucket</td>
+                <td>{{this.jobForm.value.bucket}}</td>
+              </tr>
+              <tr>
+                <td>Path</td>
+                <td>{{this.jobForm.value.path}}</td>
+              </tr>
+              <tr>
+                <td>Name</td>
+                <td>{{this.jobForm.value.dname}}</td>
+              </tr>
+              <tr>
+                <td>Prefix</td>
+                <td>{{this.jobForm.value.prefix}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="tab">
           <div style="display: flex; justify-content: center;margin:40px 0px;">
             <h2>Job configuration has been submitted successfully.</h2>
             </div>
@@ -155,6 +244,7 @@
     <div class="row">
       <div class="col-xl-12">
         <div style="text-align:center;margin: 40px 0px;">
+          <span class="step"></span>
           <span class="step"></span>
           <span class="step"></span>
           <span class="step"></span>

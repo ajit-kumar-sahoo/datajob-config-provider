@@ -154,7 +154,7 @@ export class AppComponent {
       prevBtnEl.style.display = "inline";
     }
     if (n == (tabs.length - 2)) {
-      nextBtnEl.innerHTML = "Submit";
+      nextBtnEl.innerHTML = "Confirm";
     } else {
       nextBtnEl.innerHTML = "Next";
     } 
@@ -241,7 +241,7 @@ export class AppComponent {
             break;
       }
       this.httpService.post("/datajobconfig/v1/api/jobconfigurations", payload).subscribe();
-    } else if (this.currentTab == 4) {
+    } else if (this.currentTab == 5) {
       payload = {
         "jobName": this.jobForm.value.jobname,
         "jobDescription": this.jobForm.value.jobdesc,
