@@ -1,18 +1,34 @@
-// import { Injectable } from '@angular/core';
-// // import { WebSocketSubject } from 'ngx-websocket';
-// import { Observable } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { Subject, Observable } from 'rxjs';
  
-// @Injectable({
-//   providedIn: 'root'
-// })
-// export class WebsocketService {
-//   private socket$: WebSocketSubject<string>;
+@Injectable({
+  providedIn: 'root'
+})
+export class WebsocketService {
+  private socket!: WebSocket;
+  private messageSubject: Subject<any> = new Subject<any>();
  
-//   constructor() {
-//     this.socket$ = new WebSocketSubject('ws://localhost:9092');
-//   }
+  constructor() {
+    this.connect();
+  }
+
+  connect(): void {
+    this.socket = new WebSocket('ws://localhost:9092');
+    this.socket.onmessage = (event) => {
+        const data = JSON.parse(event.data);
+        this.messageSubject.next(data);
+    }
+
+    this.socket.onerror = (error) => {
+        console.error('WebSocket error', error);
+    };
+
+    this.socket.onclose = () => {
+        console.log('WebSocket connection closed');
+    }
+  }
  
-//   getMessages(): Observable<string> {
-//     return this.socket$;
-//   }
-// }
+  getMessages(): Observable<any> {
+    return this.messageSubject.asObservable();
+  }
+}
