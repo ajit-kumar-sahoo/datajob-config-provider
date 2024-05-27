@@ -1,12 +1,12 @@
 import { Component, Inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { DOCUMENT, NgFor } from '@angular/common';
+import { DOCUMENT, NgFor, NgIf } from '@angular/common';
 import { HttpService } from './http.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [NgFor, ReactiveFormsModule],
+  imports: [NgFor, NgIf, ReactiveFormsModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
@@ -46,14 +46,14 @@ export class AppComponent {
     secretkey: new FormControl('', [Validators.required]),
     type: new FormControl('FILE_SYSTEM', [Validators.required]),
     filepath: new FormControl(''),
-    filetype: new FormControl(''),
+    filetype: new FormControl('', [Validators.pattern('csv|json|parquet')]),
     sourceurl: new FormControl(''),
     schema: new FormControl(''),
     kafkaurl: new FormControl(''),
     topicname: new FormControl(''),
     topictype: new FormControl(''),
-    format: new FormControl('', [Validators.required]),
-    bucket: new FormControl('', [Validators.required]),
+    format: new FormControl('', [Validators.required, Validators.pattern('avro|parquet|csv')]),
+    bucket: new FormControl('', [Validators.required, Validators.pattern('^GCP:[A-Za-z]+$')]),
     path: new FormControl('', [Validators.required]),
     dname: new FormControl('', [Validators.required]),
     prefix: new FormControl('', [Validators.required]),

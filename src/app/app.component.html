@@ -51,6 +51,7 @@
             <input id="filepath" type="text" formControlName="filepath" placeholder="e.g. /src/opt/path" class=""/>
             <div class="label-container">
               <label for="filetype">File Type</label>
+              <span class="invalid" *ngIf="jobForm.get('filetype')?.errors?.['pattern']">* File type should be csv or json or parquet</span>
             </div>
             <input id="filetype" type="text" formControlName="filetype" placeholder="e.g. csv or json" class=""/>
           </div>
@@ -112,10 +113,12 @@
           <h2>Destination Details:</h2>
           <div class="label-container">
             <label for="format">Format</label>
+            <span class="invalid" *ngIf="jobForm.get('format')?.errors?.['pattern']">* Format should be avro or parquet or csv</span>
           </div>
           <input id="format" type="text" formControlName="format" placeholder="e.g. avro"/>
           <div class="label-container">
             <label for="bucket">Bucket</label>
+            <span class="invalid" *ngIf="jobForm.get('bucket')?.errors?.['pattern']">* Bucket format should be 'GCP:Bucket'</span>
           </div>
           <input id="bucket" type="text" formControlName="bucket" placeholder="e.g. GCP:Bucket"/>
           <div class="label-container">
