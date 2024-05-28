@@ -13,7 +13,7 @@ import { HttpService } from './http.service';
 })
 export class AppComponent {
 
-  currentTab: number = 5;
+  currentTab: number = 0;
   typeList: any = ["Database", "Kafka", "Filesystem"];
   columnList: any = [];
   // kafkaData: string[] = [];
