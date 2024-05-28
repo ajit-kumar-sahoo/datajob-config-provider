@@ -226,7 +226,13 @@
         <div class="tab">
           <div style="display: flex; justify-content: center;margin:40px 0px;">
             <h2>Job configuration has been submitted successfully.</h2>
-            </div>
+          </div>
+          <!-- <div>
+            <h3>Processing...</h3>
+            <ul style="overflow: hidden scroll; height: 100px;">
+              <li *ngFor="let item of kafkaData">{{ item }}</li>
+            </ul>
+          </div> -->
           <div style="display: flex; justify-content: center;margin:40px 0px;">
             <button type="button" id="startBtn" (click)="restart()" class="prime-btn">Start Again</button>
           </div>

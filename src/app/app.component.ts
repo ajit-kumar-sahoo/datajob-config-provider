@@ -2,6 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { DOCUMENT, NgFor, NgIf } from '@angular/common';
 import { HttpService } from './http.service';
+// import { WebsocketService } from './websocket.service';
 
 @Component({
   selector: 'app-root',
@@ -12,9 +13,10 @@ import { HttpService } from './http.service';
 })
 export class AppComponent {
 
-  currentTab: number = 0;
+  currentTab: number = 5;
   typeList: any = ["Database", "Kafka", "Filesystem"];
   columnList: any = [];
+  // kafkaData: string[] = [];
 
   protected jobname!: String;
   protected jobdesc!: String;
@@ -62,7 +64,10 @@ export class AppComponent {
     columntype: new FormControl('', [Validators.required])
   });
   
-  constructor(@Inject(DOCUMENT) private document: Document, private httpService: HttpService) {}
+  constructor(@Inject(DOCUMENT) private document: Document, 
+      private httpService: HttpService
+      // ,private websocketService: WebsocketService
+    ) {}
   
   ngAfterViewInit() {
     this.showTab(this.currentTab);
@@ -254,6 +259,9 @@ export class AppComponent {
         }
       };
       this.httpService.post("/datajobconfig/v1/api/destinationDetail", payload).subscribe();
+      // this.websocketService.getMessages().subscribe(message => {
+      //   this.kafkaData.push(message);
+      // });
     }
     if (this.currentTab >= tabs.length) {
       return false;
